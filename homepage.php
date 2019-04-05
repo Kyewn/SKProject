@@ -36,7 +36,7 @@
             <a class="first" href="daftar.php">Daftar Peralatan</a>
             <a class="second" href="rosak.php">Rekod Kerosakan</a>
             <a class="third" href="#">Kemaskini Peralatan</a>
-            <a class="fourth" href="#">Papar Laporan<?echo $_COOKIE['username'];?></a>
+            <a class="fourth" href="#">Papar Laporan</a>
         </div>
         <div class="container2">
         </div>

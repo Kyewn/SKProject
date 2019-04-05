@@ -78,8 +78,9 @@
         if ($count > 0){
             //successfully logged in
             $seconds = 86400 + time();
-            setcookie(loggedin, date("F jS - g:i a"), $seconds);
-            setcookie(username, $userid, $seconds);
+            $user_val = "$userid";
+            setcookie('loggedin', date("F jS - g:i a"), $seconds);
+            setcookie('username', $user_val, $seconds);
             header("location:homepage.php");
         } else if (!$count){
             echo "<script>alert('Tidak mempunyai rekod pengguna tersebut dalam pangkalan data!')</script>";
