@@ -104,14 +104,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             } else if (empty($_POST["namapengguna"])) {
                 $namaErr = "Tiada input";
                 echo "<script>alert('Pastikan kotak input yang wajib diisi!');</script>";
-            } else if (strlen($_POST["namapengguna"]) < 6) {
-                echo "<script>alert('Nama pengguna perlu sekurang-kurangnya 6 huruf!');</script>";    
             } else if (!ctype_alnum($_POST["namapengguna"])){
                 $namaErr = "Nama pengguna mempunyai huruf ganjil!";
             } else if (empty($_POST["password"])) {
                 $passErr = "Tiada input";
                 echo "<script>alert('Pastikan kotak input yang wajib diisi!');</script>";
-            } else if (strlen($_POST["namapengguna"]) < 6) {
+            } else if (strlen($_POST["password"]) < 6) {
                 echo "<script>alert('Kata laluan perlu sekurang-kurangnya 6 huruf!');</script>";
             } else if (!ctype_alnum($_POST["password"])){
                 $passErr = "Kata Laluan mempunyai huruf ganjil!";
@@ -141,8 +139,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $count = mysqli_fetch_array($result);
             $checkid = "SELECT * FROM pengguna WHERE ID ='$id'";
             $idexist = mysqli_fetch_array(mysqli_query($connection, $checkid));
-            echo "<script>alert('Berjaya mendaftar pengguna baru!');</script>";
- //                window.location.href='loginpage.php';</script>";
+            echo "<script>alert('Berjaya mendaftar pengguna baru!');
+                 window.location.href='loginpage.php';</script>";
             if(!$count){
                 echo "<script>alert('Tidak berjaya mendaftar pengguna baru! Cuba lagi.');</script>";
                 } 
