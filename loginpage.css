@@ -1,0 +1,176 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+div.bg{
+    width: 100%;
+    height: 70%;
+    position: relative;
+    background: url(images/science-lab-india.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px -10px 165px 15px black inset;
+}
+
+.bg img{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    display: block;
+    margin-left: 6%;
+    margin-top: 22%;
+}
+
+div.bottom{
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(#e8e8e8 0.1px, white 55px);
+}
+
+.bottom .title{
+    display: inline-block;
+    position: relative;
+    top: 27%;
+    left: 6.5%;
+    font-size: 42px;
+    font-weight: 600;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.scrollbutton1{
+    display: inline-block;
+    position: relative;
+    float: right;
+    margin-right: 4%;
+    margin-top: 3.5%;
+    width: 175px;
+    height: 100px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 0 5px #3C362A;
+    background-color: #3C362A;
+    font-size: 20px;
+    color: white;
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-weight: 600;   
+    cursor: pointer;
+}
+
+.scrollbutton1 span{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.scrollbutton1 span:after{
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;   
+    transition: 0.2s;
+}
+
+.scrollbutton1:hover span{
+    padding-right: 24px;
+}
+
+.scrollbutton1:hover span:after{
+    opacity: 1;
+    right: 0;
+}
+
+.scrollbutton1:active{
+    background-color: #f4ddd2;
+    color: #685044;
+}
+
+.scrollbutton1:active span:after{
+    color: #685044;
+}
+
+.overflowed{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: url(images/overflowedbg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.overflowed form{
+    text-align: center;
+    color: white;
+    font-family: 'Aldrich', sans-serif;
+    font-size: 24px;
+    padding: 15%;
+    padding-bottom: 0;
+    transform: translate(-17px, 0px);
+}
+
+.overflowed form input:focus{
+    border: 2px solid #ff6938;
+    outline: none;
+}
+
+.overflowed form label,input{
+    display: block;
+    margin: auto;
+    padding: 10px;
+    cursor: text;
+} 
+
+.overflowed .actionrow input[type="submit"]{
+    display: inline;
+    padding: 15px;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-weight: 600;
+    transition: background-color 0.2s ease-out;
+}
+
+.overflowed .actionrow input[type="submit"]:hover{
+    background-color: #ff6938;
+    color: white;
+}
+
+.overflowed .actionrow input[type="submit"]:active{
+    outline: 0;
+}
+
+.overflowed .actionrow{
+    text-align: center;
+    margin-top: 3%;
+    margin-left: -1.5%;
+}
+
+.overflowed .actionrow a{
+    padding: 2%; 
+    text-decoration: none;
+    color: white;
+    font-family: 'Bai Jamjuree', sans-serif;
+    transition: color 0.2s ease-out;
+}
+
+.overflowed .actionrow a:hover{
+    color: #ff6938;
+}
+
+
+*:focus{
+    outline: 0 !important;
+}
+
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #68d1ff;
+}

@@ -1,0 +1,79 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+div.header{
+    width: 100%;
+    height: 15%;
+    position: relative;
+    background-color: #020A0D;
+}
+
+.divider { 
+    display: block;
+    margin: 0;
+    height: 1px;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(#C3E8BD), to(#C3E8BD), color-stop(50%, white));
+}
+
+.header span{
+    position: absolute;
+    top: 40px;
+    left: 130px;
+    font-size: 19px;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.header .span1{
+    color: white;
+}
+
+.header img{
+    max-width: 75px;
+    margin-left: 40px;
+    position: absolute;
+    top: 13px;
+    display: block;
+    cursor: pointer;
+}
+
+.content{
+    margin-top: 5%;
+    margin-left: 2%;
+}
+
+h1{
+    color: red;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+p{
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+button{
+    border: none;
+    padding: 20px;
+    cursor: pointer;
+    background-color: sandybrown;
+    margin-left: 70%;
+    margin-top: 18%;
+    transition: background-color 0.1s ease-out;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+button:hover{
+    border: none;
+    background-color:#ff6938;
+    color: white;
+}

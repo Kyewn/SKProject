@@ -1,0 +1,22 @@
+$useridErr = $passwordErr = $norecord = "";
+$userid = $password = "";
+
+if (empty($_POST["userid"])){
+        $useridErr = "Tiada input";
+        } else {
+        $userid = text_input($_POST["userid"]);
+        if (!ctype_alnum($userid)){
+            $useridErr = "ID Pengguna mempunyai huruf ganjil!"; 
+          }
+        }
+        
+        if (empty($_POST["password"])){      
+        $passwordErr = "Tiada input";
+        } else {
+        $password = text_input($_POST["password"]);
+        if (!ctype_alnum($password)){
+            $passwordErr = "Kata Laluan mempunyai huruf ganjil!";
+          }
+        }
+
+                    <span id="passerr   " class="error"><?php echo $passwordErr;?></span>
