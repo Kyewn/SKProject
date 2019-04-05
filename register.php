@@ -41,8 +41,8 @@ $username = "root";
 $password = "";
 $db = "sk_projek";
 
-$namaErr = $passErr = "Min: 6 characters";
-$confirmpassErr = $questionErr = $answerErr = "";
+$passErr = "Min: 6 huruf";
+$namaErr = $confirmpassErr = $questionErr = $answerErr = "";
 $nama = $pass = $confirmpass = $question = $answer = "";
 $pattern = '/^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$/';
  

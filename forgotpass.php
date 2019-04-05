@@ -51,7 +51,8 @@ $(document).ready( function() {
     $db = "sk_projek";
 
     $userid = $pass = $confirmpass = $question = $answer = "";
-    $usererr = $passerr = $confirmpasserr = $answererr = "";
+    $passerr = "Min: 6 huruf";
+    $usererr = $confirmpasserr = $answererr = "";
 
     $connection = new mysqli($servername, $username, $password, $db);
     if ($connection->connect_error){
