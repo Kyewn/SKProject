@@ -61,13 +61,13 @@ $(document).ready( function() {
     $q = isset($_GET['q']) ? $_GET['q'] : '';
 
     mysqli_select_db($connection, "pengguna");
-    $sql = "SELECT * FROM pengguna WHERE ID= '$q'";
+    $sql = "SELECT * FROM pengguna WHERE NAMA= '$q'";
     $result2 = mysqli_query($connection, $sql);
 
     if($q != ""){
         if($row = mysqli_fetch_array($result2)){
             $encoded = $row['SECURITYQ'];
-            echo str_replace(","," ", $encoded);
+            echo "$encoded";
             exit();
         } else {
             echo "";
@@ -99,30 +99,28 @@ $(document).ready( function() {
             if (empty($_POST["answer"])){      
             $answererr = "Tiada input";
             } else {
-                    $encoded2 = $_POST["answer"];
-                    $answer = text_input(str_replace(" ",",", $encoded2));
+            $answer= $_POST["answer"];
             }
         //--------------------------------------------------
-            $query = "SELECT * FROM pengguna WHERE ID='$userid'";
+            $query = "SELECT * FROM pengguna WHERE NAMA='$userid'";
             $result = mysqli_query($connection, $query);
             $count = mysqli_num_rows($result);
             //Checks if user exist
             if(!$count){
                 echo "<script>alert('Tidak mempunyai rekod pengguna tersebut dalam pangkalan data!');</script>";
             } else {
-                $query2 = "SELECT * FROM pengguna WHERE ID = '$userid' and ANSWER = '$answer'";
+                $query2 = "SELECT * FROM pengguna WHERE NAMA = '$userid' and ANSWER = '$answer'";
                 $result3 = mysqli_query($connection, $query2);
                 $count2 = mysqli_fetch_array($result3);
                 //checks if userid and answer matches
                 if (!$count2) {
                     echo "<script>alert('Jawapan soalan sekuriti SALAH!');</script>";
-                } else {
-                    //checks if password matches in both fields
-                    if ($pass !== $confirmpass){
+                } else if ($pass !== $confirmpass){
                         echo "<script>alert('Kata laluan yang diinput tidak sama!');</script>";
-                    } else {
-                        if (empty($_POST["userid"])) {
+                    } else if (empty($_POST["userid"])) {
                             $usererr = "Tiada input";
+                        } else if (strlen($_POST["pass"]) < 6) {
+                            echo "<script>alert('Kata laluan perlu sekurang-kurangnya 6 huruf!');</script>";
                         } else if (empty($_POST["pass"])) {
                             $passerr = "Tiada input";
                         } else if (empty($_POST["confirmpass"])) {
@@ -130,21 +128,19 @@ $(document).ready( function() {
                         }else if (empty($_POST["answer"])) {
                             $answererr = "Tiada input";
                         } else {
-                                $updatepass = "UPDATE pengguna SET KATALALUAN = '$pass' WHERE ID = '$userid' and ANSWER = '$answer'";
+                                $updatepass = "UPDATE pengguna SET KATALALUAN = '$pass' WHERE NAMA = '$userid' and ANSWER = '$answer'";
                                 mysqli_query($connection, $updatepass);
-                                $updated = "SELECT * FROM pengguna WHERE ID = '$userid' and KATALALUAN = '$pass'";
+                                $updated = "SELECT * FROM pengguna WHERE NAMA = '$userid' and KATALALUAN = '$pass'";
                                 $updatedResult = mysqli_query($connection, $updated);
                                 $count3 = mysqli_fetch_array($updatedResult);                               
                                 echo "<script>alert('Anda telah berjaya mengubah kata laluan anda!');
                                 window.location.href='loginpage.php';</script>";
                                 //checks if the new password is updated
-                            if (!$count3){
-                                echo "<script>alert('Tidak berjaya mengubah kata laluan anda! Cuba lagi.');</script>";
-                            } 
-                        }
-                    }
+                        if (!$count3){
+                            echo "<script>alert('Tidak berjaya mengubah kata laluan anda! Cuba lagi.');</script>";
+                         } 
+                     }
                 }
-            }
          mysqli_close($connection);
     }
 

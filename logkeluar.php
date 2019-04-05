@@ -13,8 +13,10 @@
 </head>
 <?php 
     $loggedin = 'loggedin';
+    $username = 'username';
     $seconds = -10 + time();
     setcookie($loggedin, date("F jS - g:i a"), $seconds);
+    setcookie($username, "" , $seconds);
 ?>
 <body>
     <div class="header">

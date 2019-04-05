@@ -41,8 +41,9 @@ $username = "root";
 $password = "";
 $db = "sk_projek";
 
-$namaErr = $passErr = $confirmpassErr = $questionErr = $answerErr = "";
-$nama = $password = $confirmpass = $question = $answer = "";
+$namaErr = $passErr = "Min: 6 characters";
+$confirmpassErr = $questionErr = $answerErr = "";
+$nama = $pass = $confirmpass = $question = $answer = "";
 $pattern = '/^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$/';
  
 $connection = new mysqli($servername, $username, $password, $db);
@@ -51,6 +52,7 @@ if ($connection->connect_error){
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $namaErr = $passErr = "";
     if (empty($_POST["namapengguna"])){
             $namaErr = "Tiada input";
         } else if (!ctype_alnum($_POST["namapengguna"])){
@@ -64,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         } else if (!ctype_alnum($_POST["password"])){
             $passErr = "Kata Laluan mempunyai huruf ganjil!";
         } else {
-        $password = text_input($_POST["password"]);
+        $pass = text_input($_POST["password"]);
         }
 
         if (empty($_POST["confirmpass"])){      
@@ -79,38 +81,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         if (empty($_POST["answer"])){      
             $answerErr = "Tiada input";
-         } else if (strpos($_POST["answer"], " ") !== false) { //cant check if theres white space between words
-            $answerErr = "";
-        } else {
-            $encoded= $_POST["answer"];
-            $answer = text_input(str_replace(",", " ", $encoded)); //after submitting answer set to ntg
-            echo "<script>console.log('$answer')</script>";
-        }                                                               //but not for single words
+         } else {
+            $answer = $_POST["answer"];
+        }                                                               
 
         if (empty($_POST["question"])){      
             $questionErr = "Tiada input";
-        } else if (strpos($_POST["question"], " ") !== false) { //cant check if theres white space between words
-            $questionErr = "";
-        } else {
-            $encoded2 = $_POST["question"];
-            $question = text_input(str_replace(",", " ", $encoded2)); //after submitting answer set to ntg
-            echo "<script>console.log('$question')</script>";
-        }                                                                 //but not for single words
+        } else { 
+            $question = $_POST["question"];
+        }                  
 
-        if ($password !== $confirmpass){
-            echo "<script>alert('Kata laluan yang diinput tidak sama!');</script>";
+        $query3 = "SELECT * FROM pengguna WHERE NAMA = '$nama'";
+        $res = mysqli_query($connection, $query3); 
+        $rows = mysqli_fetch_array($res);
+        if ($rows > 0) {
+            echo "<script>alert('Pengguna tersebut sudah wujud!');</script>";
         } else {
-            if (!preg_match($pattern, $telefon)){
+        if ($pass !== $confirmpass){
+            echo "<script>alert('Kata laluan yang diinput tidak sama!');</script>";
+        } else if (!preg_match($pattern, $telefon) && !empty($_POST["telefon"])){
                 echo "<script>alert('Nombor yang diinput bukan nombor telephone!');</script>";
-            }
-            if (empty($_POST["namapengguna"])) {
+            } else if (empty($_POST["namapengguna"])) {
                 $namaErr = "Tiada input";
                 echo "<script>alert('Pastikan kotak input yang wajib diisi!');</script>";
+            } else if (strlen($_POST["namapengguna"]) < 6) {
+                echo "<script>alert('Nama pengguna perlu sekurang-kurangnya 6 huruf!');</script>";    
             } else if (!ctype_alnum($_POST["namapengguna"])){
                 $namaErr = "Nama pengguna mempunyai huruf ganjil!";
             } else if (empty($_POST["password"])) {
                 $passErr = "Tiada input";
                 echo "<script>alert('Pastikan kotak input yang wajib diisi!');</script>";
+            } else if (strlen($_POST["namapengguna"]) < 6) {
+                echo "<script>alert('Kata laluan perlu sekurang-kurangnya 6 huruf!');</script>";
             } else if (!ctype_alnum($_POST["password"])){
                 $passErr = "Kata Laluan mempunyai huruf ganjil!";
             } else if (empty($_POST["confirmpass"])) {
@@ -132,18 +134,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 $id = 'U'. strval($result3['COUNT(*)'] + 1);
             }
             $query = "INSERT INTO pengguna (ID, NAMA, KATALALUAN, TELEFON, SECURITYQ, ANSWER)
-                      VALUES ( '$id', '$nama', '$password', '$telefon', '$question', '$answer')";
+                      VALUES ('$id', '$nama', '$pass', '$telefon', '$question', '$answer')";
             mysqli_query($connection, $query);
-            $checkuser = "SELECT * FROM pengguna WHERE ID='$id' and KATALALUAN='$password'";
+            $checkuser = "SELECT * FROM pengguna WHERE NAMA='$nama' and KATALALUAN='$pass'";
             $result = mysqli_query($connection, $checkuser);
             $count = mysqli_fetch_array($result);
+            $checkid = "SELECT * FROM pengguna WHERE ID ='$id'";
+            $idexist = mysqli_fetch_array(mysqli_query($connection, $checkid));
             echo "<script>alert('Berjaya mendaftar pengguna baru!');</script>";
  //                window.location.href='loginpage.php';</script>";
             if(!$count){
                 echo "<script>alert('Tidak berjaya mendaftar pengguna baru! Cuba lagi.');</script>";
+                } 
             }
         }
-    }
         mysqli_close($connection);
     }
 

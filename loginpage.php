@@ -71,7 +71,7 @@
         $password = text_input($_POST["password"]);
         }
 
-        $query = "SELECT * FROM pengguna WHERE ID='$userid' and KATALALUAN='$password'";
+        $query = "SELECT * FROM pengguna WHERE NAMA='$userid' and KATALALUAN='$password'";
         $result = mysqli_query($connection, $query);
         $count = mysqli_num_rows($result);   
 
@@ -79,6 +79,7 @@
             //successfully logged in
             $seconds = 86400 + time();
             setcookie(loggedin, date("F jS - g:i a"), $seconds);
+            setcookie(username, $userid, $seconds);
             header("location:homepage.php");
         } else if (!$count){
             echo "<script>alert('Tidak mempunyai rekod pengguna tersebut dalam pangkalan data!')</script>";
