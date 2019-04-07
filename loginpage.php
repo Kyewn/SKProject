@@ -123,7 +123,7 @@ function text_input($data){
         </div>
         <div class="overflowed">
                 <form id="login" method="post" onsubmit="checkErr()" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                    <label for="userid">ID Pengguna</label>
+                    <label for="userid">Nama Pengguna</label>
                     <input id="userid" type="text" name="userid" style="text-align: center;" value=<?php echo isset($userid)? $userid : '' ?>>
                     <span id="usererr" class="error"><?php echo $useridErr;?></span> 
                     <label for="password">Kata Laluan</label>

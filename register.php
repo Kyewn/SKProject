@@ -82,13 +82,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         if (empty($_POST["answer"])){      
             $answerErr = "Tiada input";
          } else {
-            $answer = $_POST["answer"];
+            $answer = strtolower($_POST["answer"]);
         }                                                               
 
         if (empty($_POST["question"])){      
             $questionErr = "Tiada input";
         } else { 
-            $question = $_POST["question"];
+            $question = strtolower($_POST["question"]);
         }                  
 
         $query3 = "SELECT * FROM pengguna WHERE NAMA = '$nama'";
@@ -150,6 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
 function text_input($data){
+    $data = strtolower($data);
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);

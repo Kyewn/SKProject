@@ -100,7 +100,7 @@ $(document).ready( function() {
             if (empty($_POST["answer"])){      
             $answererr = "Tiada input";
             } else {
-            $answer= $_POST["answer"];
+            $answer= strtolower($_POST["answer"]);
             }
         //--------------------------------------------------
             $query = "SELECT * FROM pengguna WHERE NAMA='$userid'";
@@ -146,6 +146,7 @@ $(document).ready( function() {
     }
 
 function text_input($data){
+    $data = strtolower($data);
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);

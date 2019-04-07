@@ -82,12 +82,12 @@ div.header{
     background-size: cover;
 }
 
-.content .container1{
+.container1{
     display: inline-block;
     position: relative;
     top: 25px;
     left: 40px;
-    width: 350px;
+    width: 45%;
     height: 500px;
 }
 
@@ -95,6 +95,7 @@ div.header{
     position: relative;
     top: 50px;
     display: block;
+    width: 20rem;
     text-decoration: none;
     background-color: lightgrey;
     padding: 25px;
@@ -133,10 +134,43 @@ a[class="fourth"]:hover{
 }
 
 .container2{
+    text-align: center;
     float: right;
     position: relative;
-    width: 410px;
+    top: 10px;
+    width: 35%;
     height: 500px;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.words{
+    margin-top: 7em;
+}
+
+.container2 h1{
+    color: rgb(65, 68, 225);
+}
+
+p{
+    color: white;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.profile{
+    position: absolute;
+    right: 3em;
+    margin-top: 50px;
+    padding: 10px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    transition: background 1s cubic-bezier(0,.15,0,.98);
+    cursor: pointer;
+}
+
+.profile:hover{
+    background-color: lightcyan;
 }
 
 ::-webkit-scrollbar{

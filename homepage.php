@@ -16,6 +16,24 @@
     <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree" rel="stylesheet">    
 </head>
+<?php
+$day = date("l");
+if ($day == "Monday") {
+    $day = "Isnin";
+} else if ($day == "Tuesday"){
+    $day = "Selasa";
+} else if ($day == "Wednesday"){
+    $day = "Rabu";
+} else if ($day == "Thursday"){
+    $day = "Khamis";
+} else if ($day == "Friday"){
+    $day = "Jumaat";
+} else if ($day == "Saturday"){
+    $day = "Sabtu";
+} else if ($day == "Sunday"){
+    $day = "Ahad";
+}
+?>
 <body>
     <div class="header">
         <a href="homepage.php">
@@ -38,7 +56,30 @@
             <a class="third" href="#">Kemaskini Peralatan</a>
             <a class="fourth" href="#">Papar Laporan</a>
         </div>
+        <script>
+            var now = new Date(<?php echo time() * 1000 ?>);
+            function startInterval(){  
+                setInterval('updateTime();', 1000);  
+            }
+            startInterval();//start it right away
+            function updateTime(){
+                var nowMS = now.getTime();
+                nowMS += 1000;
+                now.setTime(nowMS);
+                var clock = document.getElementById('clock');
+                    if(clock){
+                        var final = now.toTimeString().replace("GMT+0800 (Malaysia Time)", "");
+                        clock.innerHTML = final + "<?php echo date(" A");?>";//adjust to suit
+                    }
+            } 
+        </script>
         <div class="container2">
+            <div class="words">
+                <h1>Selamat Datang, <span style="color: rgb(253, 251, 109);"><?php echo isset($_COOKIE['username'])? $_COOKIE['username'] : '';?>!</span></h1><br />
+                <p>Hari ini hari<br /><span style="font-size: 21.5px; color: rgb(253, 251, 109);"><?php echo $day;?>, <?php echo date("d/m/Y");?></span></p><br />
+                <p>Masa Sekarang</br>
+                <span id="clock" style="color: rgb(253, 251, 109); font-size: 40px; font-weight: bolder;"></span></p> 
+                <a href="profile.php"><button class="profile"><img src="./images/avatar.png" width="45px"></button></a>
         </div>
     </div>
 </body>
