@@ -125,20 +125,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 $questionErr = "Tiada input";
                 echo "<script>alert('Pastikan kotak input yang wajib diisi!');</script>";
             } else {
-            $query2 = "SELECT COUNT(*) FROM pengguna";
-            $result2 = mysqli_query($connection,$query2);
-            $result3 = mysqli_fetch_array($result2);
-            if ($result3 > 0) {
-                $id = 'U'. strval($result3['COUNT(*)'] + 1);
-            }
-            $query = "INSERT INTO pengguna (ID, NAMA, KATALALUAN, TELEFON, SECURITYQ, ANSWER)
-                      VALUES ('$id', '$nama', '$pass', '$telefon', '$question', '$answer')";
+            $query = "INSERT INTO pengguna (NAMA, KATALALUAN, TELEFON, SECURITYQ, ANSWER)
+                      VALUES ('$nama', '$pass', '$telefon', '$question', '$answer')";
             mysqli_query($connection, $query);
             $checkuser = "SELECT * FROM pengguna WHERE NAMA='$nama' and KATALALUAN='$pass'";
             $result = mysqli_query($connection, $checkuser);
             $count = mysqli_fetch_array($result);
-            $checkid = "SELECT * FROM pengguna WHERE ID ='$id'";
-            $idexist = mysqli_fetch_array(mysqli_query($connection, $checkid));
             echo "<script>alert('Berjaya mendaftar pengguna baru!');
                  window.location.href='loginpage.php';</script>";
             if(!$count){
