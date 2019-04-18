@@ -106,11 +106,11 @@ function text_input($data){
         </div>
         <form id="form" method="POST" onsubmit="checkErr()" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
             <label for="nama">Nama Alat</label><br />
-            <input type="text" id="namaalat" name="namaalat"><br /><br /><br />
+            <input type="text" id="namaalat" name="namaalat" value="<?php echo isset($nama)? $nama : '';?>"><br /><br /><br />
                 <label for="bilalat">Bilangan Alat</label><br />
-                <input type="text" id="bilalat" name="bilalat"><br /><br /><br />
+                <input type="text" id="bilalat" name="bilalat" value="<?php echo isset($bilangan)? $bilangan : '';?>"><br /><br /><br />
                     <label for="jenisalat">Jenis Alat</label><br />
-                    <select  name="jenisalat" id="jenisalat">
+                    <select  name="jenisalat" id="jenisalat" value="<?php echo isset($jenis)? $jenis : '';?>">
                         <option value="placeholder">Sila pilih satu: </option>
                         <option value="radas">Radas</option>
                         <option value="bahan">Bahan</option>

@@ -78,7 +78,7 @@ div.header{
 .content{
     position: relative;
     height: 84.8%;
-    background: url(images/geometric-smoke-effect-motion-background_-j44ajbzh__F0000.png);
+    background: url(images/random-lines-purple-geometric-shapes-background_ryp-ysybl_thumbnail-full01.png);
     background-size: cover;
     overflow: hidden;
 }
@@ -94,8 +94,23 @@ div.header{
 }
 
 h1{
-    color: pink;
-    margin-bottom: 50px;
+    color: #e7faf9;
+    margin: 0;
+    margin-top: 6em;
+    margin-left: 3em;
+    font-size: 36px;
+}
+
+p{
+    margin: 0;
+    margin-left: 6em;
+    text-align: center;
+    font-weight: 600;
+    color: #e7faf9;
+}
+
+.first {
+    float: left;
 }
 
 .labels{
@@ -107,21 +122,19 @@ h1{
 
 label{
     display: block;
-    margin-bottom: 50px;
     font-weight: 600;
     font-size: 21px;
-    color: lightgoldenrodyellow;
+    color: #fcf37a;
+    cursor: text;
 }
 
-form{
-    display: inline-block;
+form div{
     float: left;
-    position: absolute;
-    left: 30%;
+    margin-left: 100px;
+    margin-top: 5%;
 }
 
-.container2 form input{
-    margin-bottom: 45px;
+form input{
     padding: 5px;
     border: none;
     border-bottom: 2px solid white;
@@ -130,19 +143,25 @@ form{
     font-family: 'Alegreya Sans SC', sans-serif;
     font-weight: 600;
     font-size: 17px;
-    color: white;
+    color: #ff9431;
     width: 100%;
-    transition: width 0.1s cubic-bezier(.22,.29,.23,1.2);
+    transition: width 1s cubic-bezier(.08,.73,.47,1.03), border 1s cubic-bezier(.08,.73,.47,1.03);
 }
 
-.container2 form input:focus{
-    width: 110%;
+.sec{
+    width: 15%; 
+}
+
+form input:focus{
+    width: 115%;
+    border-color: #ff9431;
+    color: white;
 }
 
 .buttons{
-    float: right;
-    position: relative;
-    top: 300px;
+    width: 500px;
+    margin-top: 12.5em;
+    margin-left: 0.5em;
 }
 
 .buttons button{
@@ -151,6 +170,7 @@ form{
     color: #5b007c;
     padding: 10px;
     width: 100px;
+    font-size: 17px;
     margin: 10px;
     cursor: pointer;
     border: none;
@@ -160,6 +180,22 @@ form{
 .buttons button:active{
     color: black;
     background: white;
+}
+
+select {
+    border-color : transparent;
+    color: #ff4800;
+    background: #fcf37a;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    padding: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    width: 200px;
+    border-radius: 5px;
+}
+
+option{
+    background: #FFF0E2;
 }
 
 *:focus{
