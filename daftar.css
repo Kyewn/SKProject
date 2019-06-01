@@ -148,19 +148,26 @@ form input:focus{
 .buttons button{
     font-family: 'Alegreya Sans SC', sans-serif;
     font-weight: 600;
-    font-size: 17px;
-    color: white;
+    font-size: 20px;
+    color: black;
     padding: 10px;
     width: 100px;
     margin: 10px;
     cursor: pointer;
-    border: none;
-    background: linear-gradient(blueviolet, #2c2238);
+    border: 2px solid rgb(151, 3, 151);
+    background: white;
+    border-radius: 15px;
+    transition: color 1s cubic-bezier(.03,.72,0,1.14), border 1s cubic-bezier(.03,.72,0,1.14);
+}
+
+.buttons button:hover{
+    color: rgb(181, 55, 206);
+    border: 2px solid rgb(182, 39, 182);
 }
 
 .buttons button:active{
     color: black;
-    background: white;
+    border: 2px solid black;
 }
 
 select {
@@ -171,7 +178,8 @@ select {
     font-size: 17px;
     font-weight: bold;
     width: 200px;
-    border-radius: 5px;
+    border-radius: 12px;
+    cursor: pointer;
 }
 
 option{

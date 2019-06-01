@@ -122,6 +122,8 @@ div.bottom{
     margin: auto;
     padding: 10px;
     cursor: text;
+    font-family: 'Aldrich', sans-serif;
+    font-weight: bold;
 } 
 
 .overflowed .actionrow input[type="submit"]{

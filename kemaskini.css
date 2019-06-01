@@ -1,0 +1,372 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+div.header{
+    width: 100%;
+    height: 15%;
+    position: relative;
+    background-color: #020A0D;
+}
+
+.divider { 
+    display: block;
+    margin: 0;
+    height: 1px;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(#C3E8BD), to(#C3E8BD), color-stop(50%, white));
+}
+
+.header span{
+    position: absolute;
+    top: 40px;
+    left: 130px;
+    font-size: 19px;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.header .span1{
+    color: white;
+}
+
+.header img{
+    max-width: 75px;
+    margin-left: 40px;
+    position: absolute;
+    top: 13px;
+    display: block;
+    cursor: pointer;
+}
+
+.header .logout{
+    position: relative;
+    border-radius: 5px;
+    margin-top: 20px;
+    left: 121px;
+    float: right;
+    width: 150px;
+    height: 56px;
+    color: black;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: -3px 5px 0 1px grey;
+    transition: 0.2s cubic-bezier(.22,.29,.23,1.2);
+} 
+
+.header .logout span{
+    position: relative;
+    left: 18px;
+    top: 18px;
+}
+
+.header .logout:hover{
+    position: relative;
+    left: 14px;
+}
+
+.header .logout:active{
+    background-color: black;
+    color: white;
+    transition: none;
+}
+
+.content {
+    background: url(images/green-bg.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 85%;
+    width: 100%;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    color: white;
+}
+.content .choosedb, div{
+    float: left;
+}
+
+.menu {
+    width: 100%;
+    height: 15%;
+}
+
+.choosedb {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.choosedb select {
+    padding: 10px;
+    border-radius: 18px;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    border: 2px solid rgb(5, 255, 243);
+    color: rgb(5, 122, 255);
+}
+
+.choosedb select option{
+    border-radius: 5px;
+    color:black;
+}
+
+.choosedb input {
+    transform: initial;
+    margin-left: 15px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: white;
+    border: 2px solid rgb(5, 255, 243);
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    transition: color 1s cubic-bezier(0,1.02,.47,1.03), transform 1s cubic-bezier(0,1.02,.47,1.03);
+    
+}
+
+.choosedb input:hover {
+    color: rgb(5, 51, 255);
+    transform: translateX(5px);
+}
+
+.choosedb input:active {
+    color:black;
+    border: 2px solid black;
+}
+
+.title {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: bolder;
+    font-size: 22px;
+    text-align: center;
+    margin-left: 7em;
+    margin-top: 10px;
+}
+
+.title .two {
+    font-weight: 100;
+    font-size: 16px;
+}
+
+.buttons {
+    margin-left: 14em;
+    margin-top: 20px;
+}
+
+.buttons button {
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 50px;
+    margin-top: 0;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 15px;
+    background-color: white;
+    border: 2px solid rgb(7, 221, 0);
+    transition: color 1s cubic-bezier(.03,.72,0,1.14), transform 1s cubic-bezier(.03,.72,0,1.14);
+}
+
+#update{
+    position: absolute;
+    top: 7.9em;
+    right: 12em;
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 15px;
+    background-color: white;
+    border: 2px solid rgb(7, 221, 0);
+    transition: color 1s cubic-bezier(.03,.72,0,1.14), transform 1s cubic-bezier(.03,.72,0,1.14);
+}
+
+#update:hover{
+    color: rgb(0, 156, 34);
+    transform: translateX(-3px);
+}
+
+#update:active{
+    color:black;
+    border: 2px solid black;
+}
+
+
+.buttons button:hover{
+    color: rgb(0, 156, 34);
+    transform: translateX(-3px);
+}
+
+.buttons button:active{
+    color:black;
+    border: 2px solid black;
+}
+
+.table{
+    margin-top: 2em;
+    height: 80%;
+    width: 100%;
+}
+
+#peralatan {
+    margin: auto;
+    background: white;
+    color: darkgreen;
+    border-radius: 9px; 
+    margin-top: 60px;
+}
+
+#peralatan th{
+    padding: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    border-bottom: 2px solid darkgreen;
+    font-weight: bolder;
+}
+
+#peralatan td input[readonly]{
+    text-align: center;
+    font-size: 17px;
+    padding: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-weight: 100;
+    border: none;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    background-color: white;
+    transition: background 1s cubic-bezier(.03,.72,0,1.14);
+    cursor: pointer;
+}
+
+#peralatan td input[readonly]:hover{
+    background-color: rgb(97, 255, 97)
+}
+
+#peralatan td input:not([readonly]){
+    text-align: center;
+    font-size: 17px;
+    padding: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-weight: 100;
+    border: none;
+    width: 95%;
+    color: rgb(78, 184, 78);
+    font-family: 'Bai Jamjuree', sans-serif;
+}
+
+#navbar{
+    margin-top: 4%;
+    text-align: center;
+    width: 100%;
+}
+    
+#navbar a {
+    position: inline-block;
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-weight: bolder;
+    padding: 12px;
+    padding-right: 15px;
+    padding-left: 15px;
+    text-decoration: none;
+    font-size: 15px;
+    background: white;
+}
+
+#navbar a:first-child{
+    border-radius: 12px 0 0 12px;
+}
+
+#navbar a:last-child{
+    border-radius: 0 12px 12px 0;
+}
+
+#navbar a.next{
+    border-radius: 0 12px 12px 0;
+}
+
+#navbar a.prev{
+    border-radius: 12px 0 0 12px;
+}
+
+.searchbox, .maxrows {
+    float:right;
+}
+
+.searchbox {
+    margin-right: 100px;
+    width: 150px;
+    padding: 17px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-radius: 12px;
+    border: none;
+    background: url(images/magnifier.png);
+    background-position: 95%; 
+    background-size: 23px;
+    background-repeat: no-repeat;
+    background-color: white;
+    transition: width 1s cubic-bezier(.08,.73,.47,1.03);
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-weight: 600;
+}
+.searchbox:focus {
+    width: 200px;
+}
+
+.maxrows {
+    margin-right: 3em;
+    width: 37px;
+    padding: 17px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-radius: 12px;
+    border: none;
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-weight: 600;
+    background: url(images/588a64f5d06f6719692a2d13.png);
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: 95%;
+    background-color: white; 
+    transition: width 1s cubic-bezier(.08,.73,.47,1.03);
+}
+
+.maxrows:focus {
+    width: 70px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}
+
+.currentpage {
+    background: greenyellow;
+}
+
+*:focus{
+    outline: 0 !important;
+}
+
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: black;
+}
+

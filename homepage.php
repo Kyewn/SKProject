@@ -53,7 +53,7 @@ if ($day == "Monday") {
         <div class="container1">
             <a class="first" href="daftar.php">Daftar Peralatan</a>
             <a class="second" href="rosak.php">Rekod Kerosakan</a>
-            <a class="third" href="#">Kemaskini Peralatan</a>
+            <a class="third" href="kemaskini.php">Kemaskini Peralatan</a>
             <a class="fourth" href="#">Papar Laporan</a>
         </div>
         <script>
