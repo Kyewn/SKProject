@@ -48,4 +48,45 @@ if(isset($_POST['delete'])) {
         echo "<script>alert('Data sudah hilang daripada pangkalan data!')</script>";
     }
 }
+
+if(isset($_POST['update2'])){ 
+    $total2 = count($_POST['namaalatr']);
+    $kodrosak_arr = $_POST['kodrosak'];
+    $namaalat_arr2 = $_POST['namaalatr']; 
+    $bilalat_arr2 = $_POST['bilalatr'];
+    $jenisrosak_arr = $_POST['jenisr'];
+    $tarikhr_arr = $_POST['tarikhr'];
+    $murid_arr = $_POST['perosak'];
+
+    for($c = 0; $c < $total2; $c++){
+        $kodrosak = str_replace("KR", "",  $kodrosak_arr[$c]);
+        $namaalat2 = $namaalat_arr2[$c]; 
+        $bilalat2 = $bilalat_arr2[$c]; 
+        $jenisr = $jenisrosak_arr[$c];
+        $tarikhr = $tarikhr_arr[$c];
+        $murid = $murid_arr[$c];
+
+        $query123 = "UPDATE kerosakan SET `NAMA_ALAT`= '".$namaalat2."', BIL_ALAT = '".$bilalat2."', JENIS_ROSAK = '".$jenisr."', TARIKH_ROSAK = '".$tarikhr."', MURID_TERLIBAT = '".$murid."' WHERE KOD_ROSAK = '".$kodrosak."'";                                     
+        mysqli_query($connection, $query123);
+        header('location: kemaskini.php?database=kerosakan');
+    } 
+    mysqli_close($connection);
+}
+
+if(isset($_POST['deleter'])) {
+    $id2 = $_POST['deleter'];
+    $check2 = "SELECT * FROM kerosakan WHERE KOD_ROSAK = '$id2'";
+    $checkres2 = mysqli_query($connection, $check2);
+    if(mysqli_num_rows($checkres2) > 0){
+        $query120 = "DELETE FROM kerosakan WHERE KOD_ROSAK = '$id2'";
+        mysqli_query($connection, $query120);
+        header("location: kemaskini.php?database=kerosakan");
+        echo "<script>alert('Berjaya delete data daripada pangkalan data!')</script>";
+    } else {
+        echo "<script>alert('Data sudah hilang daripada pangkalan data!')</script>";
+    }
+}
+
+//Simple update and delete functions done for both tables
 ?>
+

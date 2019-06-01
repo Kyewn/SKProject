@@ -53,10 +53,14 @@ $(window).on("wheel", function(e) {
 $(window).ready(function() {
 $("tr input").dblclick(function() {
     if ($(this).attr('name') != 'kodalat[]'){
-        if ($(this).attr('name') != 'pendaftar'){
+        if ($(this).attr('name') != 'pendaftar[]'){
+            if ($(this).attr('name') != 'kodrosak[]'){
+                if ($(this).attr('name') != 'pendaftar2[]'){
             if ($(this).prop('readonly')) {
                 $(this).prop('readonly', false)
                 ;
+            };
+                };
             };
         };
     };
@@ -97,13 +101,13 @@ $("tr input").keypress(function(event) {
         <div class="menu">
             <?php error_reporting(E_ERROR | E_WARNING | E_PARSE);
             if ($_SERVER['REQUEST_METHOD'] == 'GET') $database = $_GET['database'];?>
-            <form method="GET" class="choosedb" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+            <form method="GET" name="choosedb" class="choosedb" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
                 <select id="database" name="database">
                     <option <?php if ($database == 'placeholder') echo 'selected';?> value="placeholder">Pilih pangkalan data:</option>
                     <option <?php if ($database == 'peralatan') echo 'selected';?> value="peralatan">Peralatan</option>
                     <option <?php if ($database == 'kerosakan') echo 'selected';?> value="kerosakan">Kerosakan</option>
                 </select>
-                <input type="submit" value="Papar">
+                <input type="submit" id="papar" value="papar" />
             </form> 
             <div class="title">
                 <span>Kemas kini Rekod</span><br/>
@@ -111,9 +115,7 @@ $("tr input").keypress(function(event) {
             </div>
             <!--buttons should be put inside form and sent to another php file 
             for processing(submitting changes)-->
-            <form method="POST" id="alatdb" action="update.php">
             <div class="buttons">
-                <button form="alatdb" type='submit' id='update' name='update'>OK</button>
                 <a href="homepage.php"><button type="button">Balik</button></a>
             </div>
         </div>
@@ -133,7 +135,7 @@ $("tr input").keypress(function(event) {
                 die("Connection failed: " . $connection->connect_error);
             }
 
-            if ($_SERVER['REQUEST_METHOD'] == "GET"){
+            if (isset($_GET['database'])){
                 $database = $_GET['database'];
                 if ($database == 'placeholder'){
                     echo '<br/><br/><br/><br/><br/><br/><br/><br/><span style="margin: 38.5%; font-size:20px;">Tidak mempunyai data untuk dipapar</span>';        
@@ -154,7 +156,8 @@ $("tr input").keypress(function(event) {
                                   <input type='submit' style='position: absolute; left: -9999px'/></form>";
                             echo "<form method='POST' action='limitrows.php'><input type='number' id='maxrows' name='maxrows' class='maxrows' min='5' max='25' value='5'>
                                   <input type='submit' style='position: absolute; left: -9999px'/></form>";
-                            */echo "<table id='peralatan' border='1' style='border-collapse: collapse;'>
+                            */echo "<form method='POST' id='alatdb' action='update.php'>
+                            <table id='peralatan' border='1' style='border-collapse: collapse;'>
                             <tr>
                             <th></th>
                             <th>Kod Alat</th>
@@ -172,11 +175,13 @@ $("tr input").keypress(function(event) {
                             echo "<td><input type='text' name='namaalat[]' value='".$row['NAMAALAT']."' readonly='true'></td>";
                             echo "<td><input type='number' name='bilalat[]' value='".$row['BILANGANALAT']."' readonly='true'></td>";
                             echo "<td><input type='text' name='jenisalat[]' value='".$row['JENISALAT']."' readonly='true'></td>";
-                            echo "<td><input type='text' name='pendaftar' value='".$row['PENDAFTAR']."' readonly='true'></td>";
+                            echo "<td><input type='text' name='pendaftar[]' value='".$row['PENDAFTAR']."' readonly='true'></td>";
                             echo "</tr>";
                         }
                             echo "</table>
-                            </form>";
+                            </form>
+                            <button form='alatdb' type='submit' id='update' name='update'>OK</button>
+                            ";
 
                             echo "<div id='navbar'>";
                             $page_query = "SELECT * FROM $database";
@@ -202,13 +207,81 @@ $("tr input").keypress(function(event) {
                                 if ($page+1 < $i) {
                                     echo "<a href ='$url"."&page=".($page+1)."' class='next'>>></a>";
                                 }
-                            }
+                            }*/
                             echo "</div>";
-                            */
+                            
                     } else {
                             echo '<br/><br/><br/><br/><br/><br/><br/><br/><span style="margin: 38.5%; font-size:20px;">Tidak mempunyai data untuk dipapar</span>';
                     }
-                }//for displaying peralatan (ending bracket)
+                } else if ($database == 'kerosakan'){
+                    $rosakdb = "SELECT * FROM kerosakan"; //LIMIT $startFrom, $rowsDisplayed";
+                    $rquery = mysqli_query($connection, $rosakdb);
+                    $rgetrows = mysqli_num_rows($rquery);
+                    if ($rgetrows > 0){
+                           /* echo "<form method='POST' action='search.php'><input type='text' id='searchbox' name='searchbox' class='searchbox' placeholder='Cari...'>
+                                  <input type='submit' style='position: absolute; left: -9999px'/></form>";
+                            echo "<form method='POST' action='limitrows.php'><input type='number' id='maxrows' name='maxrows' class='maxrows' min='5' max='25' value='5'>
+                                  <input type='submit' style='position: absolute; left: -9999px'/></form>";
+                            */echo "<form method='POST' id='rosakdb' action='update.php'>
+                            <table id='kerosakan' border='1' style='border-collapse: collapse;'>
+                            <tr>
+                            <th></th>
+                            <th>Kod Rosak</th>
+                            <th>Nama Alat</th>
+                            <th>Bilangan Alat</th>
+                            <th>Jenis Rosak</th>
+                            <th>Tarikh Rosak</th>
+                            <th>Murid Terlibat</th>
+                            <th>Pendaftar</th>                     
+                            </tr>";
+        //We are now going to work on delete
+                        while($rrow = mysqli_fetch_array($rquery)){
+                            echo "<tr>";
+                            //Icons made by <a href="https://www.flaticon.com/authors/pixelmeetup" title="Pixelmeetup">Pixelmeetup</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY
+                            echo "<td><button type='submit' title='Delete' style='height: 35px; background-color: white; border: none; cursor: pointer;' name='deleter' value='".$rrow['KOD_ROSAK']."'><img src='images/clear.png' style='width: 18px; margin: 50px; margin-top: 0; margin-bottom: 0;'/></button></td>";
+                            echo "<td><input type='text' name='kodrosak[]' value='KR".$rrow['KOD_ROSAK']."' readonly='true'></td>";
+                            echo "<td><input type='text' name='namaalatr[]' value='".$rrow['NAMA_ALAT']."' readonly='true'></td>";
+                            echo "<td><input type='number' name='bilalatr[]' value='".$rrow['BIL_ALAT']."' readonly='true'></td>";
+                            echo "<td><input type='text' name='jenisr[]' value='".$rrow['JENIS_ROSAK']."' readonly='true'></td>";
+                            echo "<td><input type='text' name='tarikhr[]' value='".$rrow['TARIKH_ROSAK']."' readonly='true'></td>";
+                            echo "<td><input type='text' name='perosak[]' value='".$rrow['MURID_TERLIBAT']."' readonly='true'></td>";
+                            echo "<td><input type='text' name='pendaftar2[]' value='".$rrow['PEREKOD']."' readonly='true'></td>";
+                            echo "</tr>";
+                        }
+                            echo "</table>
+                            </form>
+                            <button form='rosakdb' type='submit' id='update2' name='update2'>OK</button>
+                            ";
+                            echo "<div id='navbar'>";
+                            $page_query = "SELECT * FROM $database";
+                            $page_result = mysqli_query($connection, $page_query);
+                            $total_rows = mysqli_num_rows($page_result);
+                            $url = substr_replace("$_SERVER[REQUEST_URI]","",42);
+                            
+                            /*if ($total_rows > 5) {
+                                if ($page > 1) {
+                                    echo "<a href ='$url"."&page=".($page-1)."' class='prev'><<</a>";
+                                }
+                    
+                                $pages = ceil($total_rows/$rowsDisplayed);
+                                
+                                for ($i=1;$i<$pages+1; $i++){
+                                    if ($page == $i) {
+                                    echo "<a href='$url"."&page=".$i."' class='currentpage'>".$i."</a>";
+                                    } else {
+                                    echo "<a href='$url"."&page=".$i."' class='pagination'>".$i."</a>";   
+                                    }   
+                                }
+
+                                if ($page+1 < $i) {
+                                    echo "<a href ='$url"."&page=".($page+1)."' class='next'>>></a>";
+                                }
+                            }*/
+                            echo "</div>";
+                    } else {
+                            echo '<br/><br/><br/><br/><br/><br/><br/><br/><span style="margin: 38.5%; font-size:20px;">Tidak mempunyai data untuk dipapar</span>';
+                    }
+                }
                 mysqli_close($connection);
             }
         ?>

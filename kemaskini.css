@@ -113,7 +113,7 @@ div.header{
     color:black;
 }
 
-.choosedb input {
+#papar {
     transform: initial;
     margin-left: 15px;
     padding: 10px;
@@ -130,12 +130,12 @@ div.header{
     
 }
 
-.choosedb input:hover {
+#papar:hover {
     color: rgb(5, 51, 255);
     transform: translateX(5px);
 }
 
-.choosedb input:active {
+#papar:active {
     color:black;
     border: 2px solid black;
 }
@@ -159,12 +159,28 @@ div.header{
     margin-top: 20px;
 }
 
-.buttons button, #update {
+.buttons button { 
     padding: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-left: 80px;
+    cursor: pointer;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 15px;
+    background-color: white;
+    border: 2px solid rgb(7, 221, 0);
+    transition: color 1s cubic-bezier(.03,.72,0,1.14), transform 1s cubic-bezier(.03,.72,0,1.14);}
+
+#update, #update2 {
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: right;
     margin: 10px;
     margin-top: 0;
+    margin-right: 50px;
     margin-bottom: 0;
     cursor: pointer;
     font-family: 'Alegreya Sans SC', sans-serif;
@@ -188,20 +204,35 @@ div.header{
 
 .table{
     margin-top: 2em;
-    height: 80%;
     width: 100%;
 }
 
-#peralatan {
+#peralatan{
     margin: auto;
-    background: white;
+    background-color: white;
     color: darkgreen;
     border-radius: 9px; 
     margin-top: 60px;
+    margin-bottom: 20px;
 }
 
-#peralatan th{
-    padding: 50px;
+#kerosakan {
+    margin: auto;
+    table-layout: fixed;
+    width: 95% !important;
+    background-color: white;
+    color: darkslateblue;
+    border-radius: 9px; 
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+#kerosakan th:nth-child(1){
+    width: 10.8%;
+}
+
+#peralatan th {
+    padding: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
     border: none;
@@ -209,11 +240,20 @@ div.header{
     font-weight: bolder;
 }
 
-#peralatan td input[readonly]{
+#kerosakan th{
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    border-bottom: 2px solid darkslateblue;
+    font-weight: bolder;
+}
+
+#peralatan td input[readonly], #kerosakan td input[readonly]{
     text-align: center;
     font-size: 17px;
-    padding: 5px;
-    padding-top: 8px;
+    width: 100%;
+    padding-top:8px;
     padding-bottom: 8px;
     font-weight: 100;
     border: none;
@@ -221,6 +261,10 @@ div.header{
     background-color: white;
     transition: background 1s cubic-bezier(.03,.72,0,1.14);
     cursor: pointer;
+}
+
+#kerosakan td input[readonly]:hover{
+    background-color: rgb(107, 97, 255);
 }
 
 #peralatan td input[readonly]:hover{
@@ -237,6 +281,19 @@ div.header{
     border: none;
     width: 95%;
     color: rgb(78, 184, 78);
+    font-family: 'Bai Jamjuree', sans-serif;
+}
+
+#kerosakan td input:not([readonly]){
+    text-align: center;
+    font-size: 17px;
+    padding: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-weight: 100;
+    border: none;
+    width: 95%;
+    color: rgb(107, 97, 255);
     font-family: 'Bai Jamjuree', sans-serif;
 }
 
