@@ -107,12 +107,13 @@ $("tr input").keypress(function(event) {
             </form> 
             <div class="title">
                 <span>Kemas kini Rekod</span><br/>
-                <span class="two">Dwiklik untuk mengubahsuai data dan tekan OK untuk mengemaskini data</span>        
+                <span class="two">Dwiklik untuk mengubahsuai data, <br />tekan Enter dalam ruangan data dan tekan OK untuk mengemaskini data</span>        
             </div>
             <!--buttons should be put inside form and sent to another php file 
             for processing(submitting changes)-->
             <form method="POST" id="alatdb" action="update.php">
             <div class="buttons">
+                <button form="alatdb" type='submit' id='update' name='update'>OK</button>
                 <a href="homepage.php"><button type="button">Balik</button></a>
             </div>
         </div>
@@ -166,7 +167,7 @@ $("tr input").keypress(function(event) {
                         while($row = mysqli_fetch_array($query)){
                             echo "<tr>";
                             //Icons made by <a href="https://www.flaticon.com/authors/pixelmeetup" title="Pixelmeetup">Pixelmeetup</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY
-                            echo "<td><input type='image' src='images/clear.png' style='width: 18px; margin: 50px; margin-top: 0; margin-bottom: 0;' align='center' name='delete' /></td>";
+                            echo "<td><button type='submit' title='Delete' style='height: 35px; background-color: white; border: none; cursor: pointer;' name='delete' value='".$row['KODALAT']."'><img src='images/clear.png' style='width: 18px; margin: 50px; margin-top: 0; margin-bottom: 0;'/></button></td>";
                             echo "<td><input type='text' name='kodalat[]' value='P".$row['KODALAT']."' readonly='true'></td>";
                             echo "<td><input type='text' name='namaalat[]' value='".$row['NAMAALAT']."' readonly='true'></td>";
                             echo "<td><input type='number' name='bilalat[]' value='".$row['BILANGANALAT']."' readonly='true'></td>";
@@ -175,7 +176,6 @@ $("tr input").keypress(function(event) {
                             echo "</tr>";
                         }
                             echo "</table>
-                            <input type='submit' id='update' name='update' value='OK'/>
                             </form>";
 
                             echo "<div id='navbar'>";

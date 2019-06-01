@@ -22,14 +22,30 @@ if(isset($_POST['update'])){
         $jenisalat = $jenisalat_arr[$i];
         $query2 = "UPDATE peralatan SET `NAMAALAT`= '".$namaalat."', BILANGANALAT = '".$bilalat."', JENISALAT = '".$jenisalat."' WHERE KODALAT = '".$kodalat."'";                                     
         mysqli_query($connection, $query2);
+        $query3 = "SELECT * FROM peralatan WHERE KODALAT='".$kodalat."' AND NAMAALAT = '".$namaalat."'";
+        $result = mysqli_query($connection, $query3);
+        $successful = mysqli_fetch_array($result);   //not firing alerts
+        if($successful) {
+            echo "<script>alert('Successful');</script>";
+        } else {
+            echo "<script>alert('Failed ');</script>";
+        }
         header('location: kemaskini.php?database=peralatan');
     } 
-    $query3 = "SELECT * FROM peralatan WHERE KODALAT='".$kodalat."' AND NAMAALAT = '".$namaalat."'";
-    $result = mysqli_query($connection, $query3);
-    $successful = mysqli_fetch_array($result);   //not firing from this row onwards
-    if($successful) {
-        echo "<script>alert('Successful');</script>";
+    mysqli_close($connection);
+}
+
+if(isset($_POST['delete'])) {
+    $id = $_POST['delete'];
+    $check = "SELECT * FROM peralatan WHERE KODALAT = '$id'";
+    $checkres = mysqli_query($connection, $check);
+    if(mysqli_num_rows($checkres) > 0){
+        $query10 = "DELETE FROM peralatan WHERE KODALAT = '$id'";
+        mysqli_query($connection, $query10);
+        header("location: kemaskini.php?database=peralatan");
+        echo "<script>alert('Berjaya delete data daripada pangkalan data!')</script>";
     } else {
-        echo "<script>alert('Failed ');</script>";
+        echo "<script>alert('Data sudah hilang daripada pangkalan data!')</script>";
     }
 }
+?>

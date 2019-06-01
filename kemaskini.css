@@ -159,11 +159,11 @@ div.header{
     margin-top: 20px;
 }
 
-.buttons button {
+.buttons button, #update {
     padding: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
-    margin: 50px;
+    margin: 10px;
     margin-top: 0;
     margin-bottom: 0;
     cursor: pointer;
@@ -176,40 +176,12 @@ div.header{
     transition: color 1s cubic-bezier(.03,.72,0,1.14), transform 1s cubic-bezier(.03,.72,0,1.14);
 }
 
-#update{
-    position: absolute;
-    top: 7.9em;
-    right: 12em;
-    padding: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    cursor: pointer;
-    font-family: 'Alegreya Sans SC', sans-serif;
-    font-weight: bold;
-    font-size: 15px;
-    border-radius: 15px;
-    background-color: white;
-    border: 2px solid rgb(7, 221, 0);
-    transition: color 1s cubic-bezier(.03,.72,0,1.14), transform 1s cubic-bezier(.03,.72,0,1.14);
-}
-
-#update:hover{
+.buttons button:hover, #update:hover{
     color: rgb(0, 156, 34);
     transform: translateX(-3px);
 }
 
-#update:active{
-    color:black;
-    border: 2px solid black;
-}
-
-
-.buttons button:hover{
-    color: rgb(0, 156, 34);
-    transform: translateX(-3px);
-}
-
-.buttons button:active{
+.buttons button:active, #update:active{
     color:black;
     border: 2px solid black;
 }
