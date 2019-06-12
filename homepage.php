@@ -14,7 +14,13 @@
     <link rel="stylesheet" type="text/css" href="home.css">
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree" rel="stylesheet">
+    <script type='text/javascript'>
+    function setHalfVolume() {
+        var myAudio = document.getElementById("audio");
+        myAudio.volume = 0.5;
+    }
+    </script>    
 </head>
 <?php
 $day = date("l");
@@ -35,6 +41,10 @@ if ($day == "Monday") {
 }
 ?>
 <body>
+    <!--Song not made by me, Song source: Maplestory BGM Kerning Square-->
+    <audio id='audio' autoplay onloadeddata="setHalfVolume()" loop>
+        <source src='images\[MapleStory BGM] Kerning Square.mp3' type='audio/mp3'>
+    </audio>
     <div class="header">
         <a href="homepage.php">
         <div>
@@ -48,6 +58,7 @@ if ($day == "Monday") {
         </div>
         </a>
     </div>
+    <!-- Credits to the creators of Maplestory Cursors of http://www.cursors-4u.com -->
     <div class="divider"></div>
     <div class="content">
         <div class="container1">
@@ -79,7 +90,6 @@ if ($day == "Monday") {
                 <p>Hari ini hari<br /><span style="font-size: 21.5px; color: rgb(253, 251, 109);"><?php echo $day;?>, <?php echo date("d/m/Y");?></span></p><br />
                 <p>Masa Sekarang</br>
                 <span id="clock" style="color: rgb(253, 251, 109); font-size: 40px; font-weight: bolder;"></span></p> 
-                <a href="profile.php"><button class="profile"><img src="./images/avatar.png" width="45px"></button></a>
         </div>
     </div>
 </body>
