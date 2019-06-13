@@ -26,13 +26,11 @@ if(isset($_POST['update'])){
         mysqli_query($connection, $query2);
         $query3 = "SELECT * FROM peralatan WHERE KODALAT='".$kodalat."' AND NAMAALAT = '".$namaalat."'";
         $result = mysqli_query($connection, $query3);
-        $successful = mysqli_fetch_array($result);   //not firing alerts
-        if($successful) {
-            echo "<script>alert('Successful');</script>";
+        if($result) {
+            echo "<script>window.alert('Berjaya mengemaskini data!'); window.location = 'kemaskini.php?database=peralatan';</script>";
         } else {
-            echo "<script>alert('Failed ');</script>";
+            echo "<script>alert('Gagal mengemaskini data! Cuba lagi.'); window.location = 'kemaskini.php?database=peralatan';</script>";
         }
-        header('location: kemaskini.php?database=peralatan');
     } 
     mysqli_close($connection);
 }
@@ -44,10 +42,7 @@ if(isset($_POST['delete'])) {
     if(mysqli_num_rows($checkres) > 0){
         $query10 = "DELETE FROM peralatan WHERE KODALAT = '$id'";
         mysqli_query($connection, $query10);
-        header("location: kemaskini.php?database=peralatan");
-        echo "<script>alert('Berjaya delete data daripada pangkalan data!')</script>";
-    } else {
-        echo "<script>alert('Data sudah hilang daripada pangkalan data!')</script>";
+        echo "<script>window.location='kemaskini.php?database=peralatan';</script>";
     }
 }
 
@@ -70,7 +65,13 @@ if(isset($_POST['update2'])){
 
         $query123 = "UPDATE kerosakan SET `NAMA_ALAT`= '".$namaalat2."', BIL_ALAT = '".$bilalat2."', JENIS_ROSAK = '".$jenisr."', TARIKH_ROSAK = '".$tarikhr."', MURID_TERLIBAT = '".$murid."' WHERE KOD_ROSAK = '".$kodrosak."'";                                     
         mysqli_query($connection, $query123);
-        header('location: kemaskini.php?database=kerosakan');
+        $querysel = "SELECT * FROM kerosakan WHERE NAMA_ALAT = '".$namaalat2."' AND TARIKH_ROSAK = '".$tarikhr."'";
+        $ressel = mysqli_query($connection, $querysel);
+        if ($ressel) {
+            echo "<script>window.alert('Berjaya mengemaskini data!'); window.location='kemaskini.php?database=kerosakan';</script>";
+        } else {
+            echo "<script>window.alert('Gagal mengemaskini data! Cuba lagi.'); window.location='kemaskini.php?database=kerosakan';</script>";
+        }
     } 
     mysqli_close($connection);
 }
@@ -82,10 +83,7 @@ if(isset($_POST['deleter'])) {
     if(mysqli_num_rows($checkres2) > 0){
         $query120 = "DELETE FROM kerosakan WHERE KOD_ROSAK = '$id2'";
         mysqli_query($connection, $query120);
-        header("location: kemaskini.php?database=kerosakan");
-        echo "<script>alert('Berjaya delete data daripada pangkalan data!')</script>";
-    } else {
-        echo "<script>alert('Data sudah hilang daripada pangkalan data!')</script>";
+        echo "<script>window.location='kemaskini.php?database=kerosakan';</script>";
     }
 }
 
