@@ -9,6 +9,8 @@ $connection = new mysqli($servername, $username, $password, $db);
     die("Connection failed: " . $connection->connect_error);
 }
 
+//error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
 if(isset($_POST['update'])){ 
     $total = count($_POST['namaalat']);
     $kodalat_arr = $_POST['kodalat'];
@@ -16,10 +18,10 @@ if(isset($_POST['update'])){
     $bilalat_arr = $_POST['bilalat'];
     $jenisalat_arr = $_POST['jenisalat']; 
     for($i = 0; $i < $total; $i++){
-        $kodalat = str_replace("P", "",  $kodalat_arr[$i]);
-        $namaalat = $namaalat_arr[$i]; 
-        $bilalat = $bilalat_arr[$i]; 
-        $jenisalat = $jenisalat_arr[$i];
+        $kodalat = strtolower(str_replace("P", "",  $kodalat_arr[$i]));
+        $namaalat = strtolower($namaalat_arr[$i]); 
+        $bilalat = strtolower($bilalat_arr[$i]); 
+        $jenisalat = strtolower($jenisalat_arr[$i]);
         $query2 = "UPDATE peralatan SET `NAMAALAT`= '".$namaalat."', BILANGANALAT = '".$bilalat."', JENISALAT = '".$jenisalat."' WHERE KODALAT = '".$kodalat."'";                                     
         mysqli_query($connection, $query2);
         $query3 = "SELECT * FROM peralatan WHERE KODALAT='".$kodalat."' AND NAMAALAT = '".$namaalat."'";
@@ -59,12 +61,12 @@ if(isset($_POST['update2'])){
     $murid_arr = $_POST['perosak'];
 
     for($c = 0; $c < $total2; $c++){
-        $kodrosak = str_replace("KR", "",  $kodrosak_arr[$c]);
-        $namaalat2 = $namaalat_arr2[$c]; 
-        $bilalat2 = $bilalat_arr2[$c]; 
-        $jenisr = $jenisrosak_arr[$c];
-        $tarikhr = $tarikhr_arr[$c];
-        $murid = $murid_arr[$c];
+        $kodrosak = strtolower(str_replace("KR", "",  $kodrosak_arr[$c]));
+        $namaalat2 = strtolower($namaalat_arr2[$c]); 
+        $bilalat2 = strtolower($bilalat_arr2[$c]); 
+        $jenisr = strtolower($jenisrosak_arr[$c]);
+        $tarikhr = strtolower($tarikhr_arr[$c]);
+        $murid = strtolower($murid_arr[$c]);
 
         $query123 = "UPDATE kerosakan SET `NAMA_ALAT`= '".$namaalat2."', BIL_ALAT = '".$bilalat2."', JENIS_ROSAK = '".$jenisr."', TARIKH_ROSAK = '".$tarikhr."', MURID_TERLIBAT = '".$murid."' WHERE KOD_ROSAK = '".$kodrosak."'";                                     
         mysqli_query($connection, $query123);
@@ -87,6 +89,65 @@ if(isset($_POST['deleter'])) {
     }
 }
 
+if(isset($_POST['csvsub'])){
+    if (isset($_COOKIE['username'])) { 
+        $user = $_COOKIE['username'];
+    } else {
+        $user = "NaN";
+    }
+
+    $filename = $_FILES['csv']['tmp_name'];
+
+    if ($_FILES['csv']['size'] > 0) {
+        $file = fopen($filename, 'r');
+        while (!feof($file)){
+            $data = fgetcsv($file, '0');
+            $query3000 = "SELECT * FROM peralatan WHERE KODALAT='".$data[0]."'";
+            $result3000 = mysqli_query($connection, $query3000);
+            if (mysqli_num_rows($result3000) == 0) {
+                $query321 = "INSERT INTO peralatan(NAMAALAT, BILANGANALAT, JENISALAT, PENDAFTAR)
+                            VALUES('".$data[0]."', '".$data[1]."', '".$data[2]."', '".$user."')";
+                mysqli_query($connection, $query321);
+
+                echo "<script>window.alert('Rekod baru berjaya dimasukkan ke dalam pangkalan data!');
+                     window.location = 'kemaskini.php?database=peralatan';</script>";
+            }
+        } fclose($file); 
+    } else {
+        echo "<script>window.alert('Rekod gagal dimasukkan ke dalam pangkalan data! Cuba lagi');
+             window.location = 'kemaskini.php?database=peralatan';</script>";
+    }
+}
+
+if(isset($_POST['csvsub2'])){
+    if (isset($_COOKIE['username'])) { 
+        $user1 = $_COOKIE['username'];
+    } else {
+        $user1 = "NaN";
+    }
+
+    $filename1 = $_FILES['csv2']['tmp_name'];
+
+    if ($_FILES['csv2']['size'] > 0) {
+        $file1 = fopen($filename1, 'r');
+        while (!feof($file1)){
+            $data1 = fgetcsv($file1, '0');
+            $query30001 = "SELECT * FROM kerosakan WHERE KOD_ROSAK='".$data1[0]."'";
+            $result30001 = mysqli_query($connection, $query30001);
+            if (mysqli_num_rows($result30001) == 0) {
+                $query3211 = "INSERT INTO kerosakan(NAMA_ALAT, BIL_ALAT, JENIS_ROSAK, TARIKH_ROSAK, MURID_TERLIBAT, PEREKOD)
+                            VALUES('".$data1[1]."', '".$data1[2]."', '".$data1[3]."', '".$data1[4]."', '".$data1[5]."', '".$user1."')";
+                mysqli_query($connection, $query3211);
+
+                echo "<script>window.alert('Rekod baru berjaya dimasukkan ke dalam pangkalan data!');
+                     window.location = 'kemaskini.php?database=kerosakan';</script>";
+            }
+        } fclose($file); 
+    } else {
+        echo "<script>window.alert('Rekod gagal dimasukkan ke dalam pangkalan data! Cuba lagi');
+             window.location = 'kemaskini.php?database=kerosakan';</script>";
+    }
+}
 //Simple update and delete functions done for both tables
 ?>
 

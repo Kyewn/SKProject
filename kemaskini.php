@@ -82,6 +82,22 @@ $("tr input").keypress(function(event) {
         };
     };
   });
+
+$("#searchbox").keyup(function(){
+    var target = $(this).val().toLowerCase();
+    $('table tbody tr').hide();
+    var len = $("table tbody tr td input").val().indexOf(target);
+    /*^^ returns -1
+    if (len != -1) {
+        $('table tbody tr:first-child').show();
+        $('table tbody tr td input:contains("'+target+'")').each(function(){
+            $(this).closest('tr').show();
+      });
+    } else {
+        var longth = $(tr).length;
+        document.getElementById('update').value = longth;
+    };*/
+})
 });
 </script>
 <body>
@@ -140,23 +156,20 @@ $("tr input").keypress(function(event) {
                 if ($database == 'placeholder'){
                     echo '<br/><br/><br/><br/><br/><br/><br/><br/><span style="margin: 38.5%; font-size:20px;">Tidak mempunyai data untuk dipapar</span>';        
                 } else if ($database == 'peralatan'){           
-                    if (isset($_GET['page'])){
-                        $page = $_GET['page'];
-                    } else {
-                        $page = 1;
-                    }
-
-                    //$rowsDisplayed = 5;
-                    //$startFrom = ($page-1)*$rowsDisplayed;
-                    $alatdb = "SELECT * FROM peralatan"; //LIMIT $startFrom, $rowsDisplayed";
+                    $alatdb = "SELECT * FROM peralatan";
                     $query = mysqli_query($connection, $alatdb);
                     $getrows = mysqli_num_rows($query);
                     if ($getrows > 0){
-                           /* echo "<form method='POST' action='search.php'><input type='text' id='searchbox' name='searchbox' class='searchbox' placeholder='Cari...'>
-                                  <input type='submit' style='position: absolute; left: -9999px'/></form>";
-                            echo "<form method='POST' action='limitrows.php'><input type='number' id='maxrows' name='maxrows' class='maxrows' min='5' max='25' value='5'>
-                                  <input type='submit' style='position: absolute; left: -9999px'/></form>";
-                            */echo "<form method='POST' id='alatdb' action='update.php'>
+                            echo "<form method='POST' action='update.php' enctype='multipart/form-data'>
+                            <label class='csvstyle' for='csv'></label>
+                            <input type='file' id='csv' name='csv'>
+                            <input type='submit' id='csvsub' name='csvsub' class='csvsub' value='Import'/>
+                            <input type='text' id='searchbox' name='searchbox' class='searchbox' placeholder='Cari...'>
+                            </form>";
+                            echo "<form method='POST' action='search.php'>
+                                  
+                                  </form>";
+                            echo "<form method='POST' id='alatdb' action='update.php'>
                             <table id='peralatan' border='1' style='border-collapse: collapse;'>
                             <tr>
                             <th></th>
@@ -166,7 +179,6 @@ $("tr input").keypress(function(event) {
                             <th>Jenis Alat</th>
                             <th>Pendaftar</th>                     
                             </tr>";
-        //We are now going to work on delete
                         while($row = mysqli_fetch_array($query)){
                             echo "<tr>";
                             //Icons made by <a href="https://www.flaticon.com/authors/pixelmeetup" title="Pixelmeetup">Pixelmeetup</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY
@@ -181,35 +193,8 @@ $("tr input").keypress(function(event) {
                             echo "</table>
                             </form>
                             <button form='alatdb' type='submit' id='update' name='update'>OK</button>
-                            ";
-
-                            echo "<div id='navbar'>";
-                            $page_query = "SELECT * FROM $database";
-                            $page_result = mysqli_query($connection, $page_query);
-                            $total_rows = mysqli_num_rows($page_result);
-                            $url = substr_replace("$_SERVER[REQUEST_URI]","",42);
-                            
-                            /*if ($total_rows > 5) {
-                                if ($page > 1) {
-                                    echo "<a href ='$url"."&page=".($page-1)."' class='prev'><<</a>";
-                                }
-                    
-                                $pages = ceil($total_rows/$rowsDisplayed);
-                                
-                                for ($i=1;$i<$pages+1; $i++){
-                                    if ($page == $i) {
-                                    echo "<a href='$url"."&page=".$i."' class='currentpage'>".$i."</a>";
-                                    } else {
-                                    echo "<a href='$url"."&page=".$i."' class='pagination'>".$i."</a>";   
-                                    }   
-                                }
-
-                                if ($page+1 < $i) {
-                                    echo "<a href ='$url"."&page=".($page+1)."' class='next'>>></a>";
-                                }
-                            }*/
+                            "; 
                             echo "</div>";
-                            
                     } else {
                             echo '<br/><br/><br/><br/><br/><br/><br/><br/><span style="margin: 38.5%; font-size:20px;">Tidak mempunyai data untuk dipapar</span>';
                     }
@@ -218,11 +203,13 @@ $("tr input").keypress(function(event) {
                     $rquery = mysqli_query($connection, $rosakdb);
                     $rgetrows = mysqli_num_rows($rquery);
                     if ($rgetrows > 0){
-                           /* echo "<form method='POST' action='search.php'><input type='text' id='searchbox' name='searchbox' class='searchbox' placeholder='Cari...'>
-                                  <input type='submit' style='position: absolute; left: -9999px'/></form>";
-                            echo "<form method='POST' action='limitrows.php'><input type='number' id='maxrows' name='maxrows' class='maxrows' min='5' max='25' value='5'>
-                                  <input type='submit' style='position: absolute; left: -9999px'/></form>";
-                            */echo "<form method='POST' id='rosakdb' action='update.php'>
+                        echo "<form method='POST' action='update.php' enctype='multipart/form-data'>
+                            <label class='csvstyle' for='csv2'></label>
+                            <input type='file' id='csv2' name='csv2'>
+                            <input type='submit' id='csvsub2' name='csvsub2' class='csvsub' value='Import'/>
+                            <input type='text' id='searchbox' name='searchbox' class='searchbox2' placeholder='Cari...'>
+                            </form>";                            
+                        echo "<form method='POST' id='rosakdb' action='update.php'>
                             <table id='kerosakan' border='1' style='border-collapse: collapse;'>
                             <tr>
                             <th></th>
@@ -234,7 +221,6 @@ $("tr input").keypress(function(event) {
                             <th>Murid Terlibat</th>
                             <th>Pendaftar</th>                     
                             </tr>";
-        //We are now going to work on delete
                         while($rrow = mysqli_fetch_array($rquery)){
                             echo "<tr>";
                             //Icons made by <a href="https://www.flaticon.com/authors/pixelmeetup" title="Pixelmeetup">Pixelmeetup</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY
@@ -252,31 +238,6 @@ $("tr input").keypress(function(event) {
                             </form>
                             <button form='rosakdb' type='submit' id='update2' name='update2'>OK</button>
                             ";
-                            echo "<div id='navbar'>";
-                            $page_query = "SELECT * FROM $database";
-                            $page_result = mysqli_query($connection, $page_query);
-                            $total_rows = mysqli_num_rows($page_result);
-                            $url = substr_replace("$_SERVER[REQUEST_URI]","",42);
-                            
-                            /*if ($total_rows > 5) {
-                                if ($page > 1) {
-                                    echo "<a href ='$url"."&page=".($page-1)."' class='prev'><<</a>";
-                                }
-                    
-                                $pages = ceil($total_rows/$rowsDisplayed);
-                                
-                                for ($i=1;$i<$pages+1; $i++){
-                                    if ($page == $i) {
-                                    echo "<a href='$url"."&page=".$i."' class='currentpage'>".$i."</a>";
-                                    } else {
-                                    echo "<a href='$url"."&page=".$i."' class='pagination'>".$i."</a>";   
-                                    }   
-                                }
-
-                                if ($page+1 < $i) {
-                                    echo "<a href ='$url"."&page=".($page+1)."' class='next'>>></a>";
-                                }
-                            }*/
                             echo "</div>";
                     } else {
                             echo '<br/><br/><br/><br/><br/><br/><br/><br/><span style="margin: 38.5%; font-size:20px;">Tidak mempunyai data untuk dipapar</span>';
@@ -286,5 +247,8 @@ $("tr input").keypress(function(event) {
             }
         ?>
     </div>
+    <!--Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY 
+    <button type='button' id="pgdn" class="pgdn"></button>
+    <button type='button' id="pgup" class="pgup"></button>-->
 </body>
 </html>
