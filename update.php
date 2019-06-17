@@ -98,8 +98,7 @@ if(isset($_POST['csvsub'])){
 
     if ($_FILES['csv']['size'] > 0) {
         $file = fopen($filename, 'r');
-        while (!feof($file)){
-            $data = fgetcsv($file, '0');
+        while (($data = fgetcsv($file, 10000, ",")) !== FALSE){
             $query3000 = "SELECT * FROM peralatan WHERE KODALAT='".$data[0]."'";
             $result3000 = mysqli_query($connection, $query3000);
             if (mysqli_num_rows($result3000) == 0) {

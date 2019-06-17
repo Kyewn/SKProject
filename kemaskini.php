@@ -196,7 +196,12 @@ $("#searchbox").keyup(function(){
                             "; 
                             echo "</div>";
                     } else {
-                            echo '<br/><br/><br/><br/><br/><br/><br/><br/><span style="margin: 38.5%; font-size:20px;">Tidak mempunyai data untuk dipapar</span>';
+                        echo "<form method='POST' action='update.php' enctype='multipart/form-data'>
+                        <label class='csvstyle' for='csv'></label>
+                        <input type='file' id='csv' name='csv'>
+                        <input type='submit' id='csvsub' name='csvsub' class='csvsub' value='Import'/>
+                        </form>";
+                        echo '<br/><br/><br/><br/><br/><br/><br/><br/><span style="margin: 38.5%; font-size:20px;">Tidak mempunyai data untuk dipapar</span>';
                     }
                 } else if ($database == 'kerosakan'){
                     $rosakdb = "SELECT * FROM kerosakan"; //LIMIT $startFrom, $rowsDisplayed";
@@ -240,7 +245,12 @@ $("#searchbox").keyup(function(){
                             ";
                             echo "</div>";
                     } else {
-                            echo '<br/><br/><br/><br/><br/><br/><br/><br/><span style="margin: 38.5%; font-size:20px;">Tidak mempunyai data untuk dipapar</span>';
+                        echo "<form method='POST' action='update.php' enctype='multipart/form-data'>
+                            <label class='csvstyle' for='csv2'></label>
+                            <input type='file' id='csv2' name='csv2'>
+                            <input type='submit' id='csvsub2' name='csvsub2' class='csvsub' value='Import'/>
+                            </form>";
+                        echo '<br/><br/><br/><br/><br/><br/><br/><br/><span style="margin: 38.5%; font-size:20px;">Tidak mempunyai data untuk dipapar</span>';
                     }
                 }
                 mysqli_close($connection);
