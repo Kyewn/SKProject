@@ -16,39 +16,8 @@
     <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree" rel="stylesheet">  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="search.js" type="text/javascript"></script>
 </head>
-<!--<script type="text/javascript">
-$(window).on("wheel", function(e) {
-  focusedEl = document.activeElement;
-  if (focusedEl.nodeName='input' && focusedEl.type && focusedEl.type.match(/number/i)){
-    e.preventDefault();
-    var max=null;
-    var min=null;
-    if(focusedEl.hasAttribute('max')){
-      max = focusedEl.getAttribute('max');
-    }
-    if(focusedEl.hasAttribute('min')){
-      min = focusedEl.getAttribute('min');
-    }
-        var value = parseInt(focusedEl.value, 10);
-    if (e.originalEvent.deltaY < 0) {
-      value++;
-      if (max !== null && value > max) {
-        value = max;
-      }
-    } else {
-      value--;
-      if (min !== null && value < min) {
-        value = min;
-      }
-    }
-    focusedEl.value = value;
-    if (focusedEl.value == "") {
-        focusedEl.value = 5;
-    }
-  }
-});
-</script>-->
 <script type="text/javascript">
 $(window).ready(function() {
 $("tr input").dblclick(function() {
@@ -82,22 +51,6 @@ $("tr input").keypress(function(event) {
         };
     };
   });
-
-$("#searchbox").keyup(function(){
-    var target = $(this).val().toLowerCase();
-    $('table tbody tr').hide();
-    var len = $("table tbody tr td input").val().indexOf(target);
-    /*^^ returns -1
-    if (len != -1) {
-        $('table tbody tr:first-child').show();
-        $('table tbody tr td input:contains("'+target+'")').each(function(){
-            $(this).closest('tr').show();
-      });
-    } else {
-        var longth = $(tr).length;
-        document.getElementById('update').value = longth;
-    };*/
-})
 });
 </script>
 <body>
@@ -164,7 +117,14 @@ $("#searchbox").keyup(function(){
                             <label class='csvstyle' for='csv'></label>
                             <input type='file' id='csv' name='csv'>
                             <input type='submit' id='csvsub' name='csvsub' class='csvsub' value='Import'/>
-                            <input type='text' id='searchbox' name='searchbox' class='searchbox' placeholder='Cari...'>
+                            <input type='text' id='searchbox' name='searchbox' class='searchbox' onkeyup='search()' placeholder='Cari Nama...'>
+                            <select id='pilih' nama='pilih'>
+                            <option value='KodAlat'>Kod Alat</option>
+                            <option value='NamaAlat'>Nama Alat</option>
+                            <option value='BilAlat'>Bilangan Alat</option>
+                            <option value='JenisAlat'>Jenis Alat</option>
+                            <option value='Pendaftar'>Pendaftar</option>
+                            </select>
                             </form>";
                             echo "<form method='POST' action='search.php'>
                                   
@@ -212,7 +172,14 @@ $("#searchbox").keyup(function(){
                             <label class='csvstyle' for='csv2'></label>
                             <input type='file' id='csv2' name='csv2'>
                             <input type='submit' id='csvsub2' name='csvsub2' class='csvsub' value='Import'/>
-                            <input type='text' id='searchbox' name='searchbox' class='searchbox2' placeholder='Cari...'>
+                            <input type='text' id='searchbox' name='searchbox' class='searchbox2' onkeyup='rsearch()' placeholder='Cari Nama...'>
+                            <select id='pilih' nama='pilih'>
+                            <option value='KodAlat'>asd</option>
+                            <option value='NamaAlat'>Nama Alat</option>
+                            <option value='BilAlat'>Bilangan Alat</option>
+                            <option value='JenisAlat'>Jenis Alat</option>
+                            <option value='Pendaftar'>Pendaftar</option>
+                            </select>
                             </form>";                            
                         echo "<form method='POST' id='rosakdb' action='update.php'>
                             <table id='kerosakan' border='1' style='border-collapse: collapse;'>

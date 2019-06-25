@@ -127,8 +127,7 @@ if(isset($_POST['csvsub2'])){
 
     if ($_FILES['csv2']['size'] > 0) {
         $file1 = fopen($filename1, 'r');
-        while (!feof($file1)){
-            $data1 = fgetcsv($file1, '0');
+        while (($data1 = fgetcsv($file1, 10000, ",")) !== FALSE){
             $query30001 = "SELECT * FROM kerosakan WHERE KOD_ROSAK='".$data1[0]."'";
             $result30001 = mysqli_query($connection, $query30001);
             if (mysqli_num_rows($result30001) == 0) {

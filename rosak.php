@@ -29,14 +29,14 @@ function validateJenis() {
         muridVal = murid.value;
     }
 
-    if (selectVal != "buatanpelajar") {
+    if (selectVal != "buatan pelajar") {
         if (muridVal != "") {
             alert('Jenis kerosakan bukan buatan pelajar!');
             return false;
         }
-    } else if (selectVal == "buatanpelajar") {
+    } else if (selectVal == "buatan pelajar") {
         if (muridVal == "") {
-            alert('Pastikan input diisi!');
+            alert('Pastikan anda merekod ID murid!');
             return false;
         }
     } else {
@@ -66,7 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tarikh = text_input($_POST["tarikhrosak"]);
         $murid = text_input($_POST["murid"]);
         $pendaftar = text_input($_POST["pendaftar"]);
-
+        $query123 = "SELECT * FROM peralatan WHERE NAMAALAT = '$alat'";
+        $res123 = mysqli_query($connection, $query123);
+    
     if (empty($alat)) {
         echo "<script>alert('Pastikan input diisi!');</script>";
     } else if (empty($bil)) {
@@ -75,6 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('Pastikan input diisi!');</script>";
     } else if (empty($tarikh)) {
         echo "<script>alert('Pastikan input diisi!');</script>";
+    } else if (!mysqli_num_rows($res123)) {
+        echo "<script>alert('Alat yang tidak wujud dalam pangkalan data!');</script>";
     } else if (!preg_match('/^[0-9]+$/', $bil)) {
         echo "<script>alert('Bilangan alat bukan jenis nombor!');</script>";    
     } else if ($jenis == "placeholder"){
@@ -131,9 +135,9 @@ function text_input($data){
                     <label for="jenisrosak">Jenis Kerosakan</label><br />
                     <select name="jenisrosak" id="jenisrosak">
                         <option <?php if ($jenis == "placeholder") echo 'selected';?> value="placeholder">Sila pilih satu:</option>
-                        <option <?php if ($jenis == "rosaksendiri") echo 'selected';?> value="rosaksendiri">Rosak sendiri</option>
-                        <option <?php if ($jenis == "buatanpelajar") echo 'selected';?> value="buatanpelajar">Buatan pelajar</option>
-                        <option <?php if ($jenis == "unsurluar") echo 'selected';?> value="unsurluar">Unsur luar</option>
+                        <option <?php if ($jenis == "rosak sendiri") echo 'selected';?> value="rosak sendiri">Rosak sendiri</option>
+                        <option <?php if ($jenis == "buatan pelajar") echo 'selected';?> value="buatan pelajar">Buatan pelajar</option>
+                        <option <?php if ($jenis == "unsur luar") echo 'selected';?> value="unsur luar">Unsur luar</option>
                     </select><br /><br /><br />
                 <label for="bilalat">Tarikh Rosak</label><br />
                 <input type="text" id="tarikhrosak" name="tarikhrosak" value="<?php echo isset($tarikh)? $tarikh : date("d/m/Y");?>">

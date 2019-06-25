@@ -114,7 +114,7 @@ function text_input($data){
                         <option value="placeholder">Sila pilih satu: </option>
                         <option value="radas">Radas</option>
                         <option value="bahan">Bahan</option>
-                        <option value="peralatanbiasa">Peralatan Biasa</option>
+                        <option value="peralatan biasa">Peralatan Biasa</option>
                     </select><br /><br /><br />
             <label for="pendaftar">Pendaftaran Oleh</label><br /> 
             <input id="pendaftar" name="pendaftar" type="text" value="<?php echo isset($_COOKIE['username'])? $_COOKIE['username'] : '';?>" readonly>

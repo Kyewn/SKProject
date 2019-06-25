@@ -65,7 +65,7 @@ if ($day == "Monday") {
             <a class="first" href="daftar.php">Daftar Peralatan</a>
             <a class="second" href="rosak.php">Rekod Kerosakan</a>
             <a class="third" href="kemaskini.php">Kemaskini Rekod</a>
-            <a class="fourth" href="#">Papar Laporan</a>
+            <a class="fourth" href="laporan.php">Papar Laporan</a>
         </div>
         <script>
             var now = new Date(<?php echo time() * 1000 ?>);

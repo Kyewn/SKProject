@@ -1,0 +1,133 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+div.header{
+    width: 100%;
+    height: 15%;
+    position: relative;
+    background-color: #020A0D;
+}
+
+.divider { 
+    display: block;
+    margin: 0;
+    height: 1px;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(#C3E8BD), to(#C3E8BD), color-stop(50%, white));
+}
+
+.header span{
+    position: absolute;
+    top: 40px;
+    left: 130px;
+    font-size: 19px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.header .span1{
+    color: white;
+}
+
+.header img{
+    max-width: 75px;
+    margin-left: 40px;
+    position: absolute;
+    top: 13px;
+    display: block;
+    cursor: pointer;
+}
+
+.header .logout{
+    position: relative;
+    border-radius: 5px;
+    margin-top: 20px;
+    left: 121px;
+    float: right;
+    width: 150px;
+    height: 56px;
+    color: black;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: -3px 5px 0 1px grey;
+    transition: 0.2s cubic-bezier(.22,.29,.23,1.2);
+} 
+
+.header .logout span{
+    position: relative;
+    left: 18px;
+    top: 18px;
+}
+
+.header .logout:hover{
+    position: relative;
+    left: 14px;
+}
+
+.header .logout:active{
+    background-color: black;
+    color: white;
+    transition: none;
+}
+
+.content{
+    position: relative;
+    height: 84.8%;
+    background-color: black;
+}
+
+#alat{
+    border: rgb(255, 101, 101);
+    background-color: rgb(255, 101, 101);
+    width: 49.9%;
+    height: 590.3px;
+    cursor: pointer;
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+    transition: border 1s cubic-bezier(.25,.49,.09,1), background 1s cubic-bezier(.25,.49,.09,1), color 1s cubic-bezier(.33,.73,.6,.98);
+}
+
+
+#alat:hover{
+    border: white;
+    background-color: white;
+    color: rgb(255, 101, 101);
+}
+
+#rosak{
+    border: rgb(136, 136, 255);
+    background-color: rgb(136, 136, 255);
+    width: 49.9%;
+    height: 590.3px;
+    cursor: pointer;
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+    transition: border 1s cubic-bezier(.25,.49,.09,1), background 1s cubic-bezier(.25,.49,.09,1), color 1s cubic-bezier(.33,.73,.6,.98);
+}
+
+#rosak:hover{
+    border: white;
+    background-color: white;
+    color: rgb(136, 136, 255);
+}
+
+*:focus{
+    outline: 0 !important;
+}
+
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: black;
+}
