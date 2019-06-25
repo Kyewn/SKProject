@@ -161,10 +161,10 @@ function text_input($data){
         <label for="userid">Nama Pengguna *</label>
         <input id="userid" type="text" name="userid" onchange="showQuestion(this.value)" value=<?php echo isset($userid)? $userid : ""?>>
         <span class="error" id="usererr"><?php echo $usererr;?></span><br/>
-            <label for="newpass">New Password *</label>
+            <label for="newpass">Kata Laluan Baru *</label>
             <input id="pass" type="password" name="pass">
             <span class="error" id="passerr"><?php echo $passerr;?></span><br/>
-                <label for="newpassconfirm">Confirm New Password *</label>
+                <label for="newpassconfirm">Pengiktirafan Kata Laluan Baru *</label>
                 <input id="confirmpass" type="password" name="confirmpass">
                 <span class="error" id="confirmpasserr"><?php echo $confirmpasserr;?></span><br/>
             <label for="question">Soalan Sekuriti</label><br /><br/>

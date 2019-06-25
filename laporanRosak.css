@@ -103,6 +103,12 @@ button {
     color: white;
     cursor: pointer;
     background-color: rgb(95, 95, 95);
+    transition: background 1s cubic-bezier(.07,.82,0,.98), color 1s cubic-bezier(.07,.82,0,.98);
+}
+
+button:hover , #submit:hover{
+    background-color: white;    
+    color: rgb(95, 95, 95);
 }
 
 .cetak {
@@ -117,6 +123,12 @@ button {
     margin-right: 50px;
     cursor: pointer;
     background-color: white;    
+    transition: background 1s cubic-bezier(.07,.82,0,.98), color 1s cubic-bezier(.07,.82,0,.98);
+}
+
+.cetak:hover {
+    background-color: rgb(95, 95, 95);
+    color: white;
 }
 
 #choice {
@@ -133,7 +145,7 @@ button {
 }
 
 #submit {
-    border:none;
+    border: 2px solid rgb(95, 95, 95);
     font-family: 'Bai Jamjuree', sans-serif;
     padding: 10px;
     padding-top: 7px;
@@ -141,15 +153,17 @@ button {
     color: white;
     cursor: pointer;
     background-color: rgb(95, 95, 95);
+    transition: background 1s cubic-bezier(.07,.82,0,.98), color 1s cubic-bezier(.07,.82,0,.98);
 }
 .display {
     width: 100%;
     margin-top: 50px;
+    margin-left: 20px;
 }
 
 .display div {
     float: left;
-    width: 50%;
+    width: 45%;
 }
 
 .display span {

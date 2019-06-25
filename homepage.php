@@ -15,12 +15,6 @@
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree" rel="stylesheet">
-    <script type='text/javascript'>
-    function setHalfVolume() {
-        var myAudio = document.getElementById("audio");
-        myAudio.volume = 0.5;
-    }
-    </script>    
 </head>
 <?php
 $day = date("l");
@@ -41,10 +35,6 @@ if ($day == "Monday") {
 }
 ?>
 <body>
-    <!--Song not made by me, Song source: Maplestory BGM Kerning Square-->
-    <audio id='audio' autoplay onloadeddata="setHalfVolume()" loop>
-        <source src='images\[MapleStory BGM] Kerning Square.mp3' type='audio/mp3'>
-    </audio>
     <div class="header">
         <a href="homepage.php">
         <div>

@@ -30,6 +30,7 @@
     </div>
     <div class="divider"></div>
     <div class="content">
+        <a href="homepage.php"><button id="balik">Balik</button></a>
         <div class="buttons">
             <a href="laporanAlat.php"><button id="alat" type="button">Laporan Peralatan</button></a>
             <a href="laporanRosak.php"><button id="rosak" type="button">Laporan Kerosakan</button></a>

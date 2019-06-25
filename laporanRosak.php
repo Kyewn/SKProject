@@ -31,9 +31,9 @@
     </div>
     <div class="divider"></div>
     <div class="content">
-        <p>Laporan Peralatan</p>
+        <p>Laporan Kerosakan</p>
         <a href="laporan.php"><button type="button">Balik</button></a>
-        <button class="cetak" type="button">Cetak</button>
+        <button class="cetak" type="button" onclick="window.print();">Cetak</button>
         <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
             <select id="choice" name="choice">
                 <option value="null"><?php echo isset($_POST['choice'])? 'Dipilih: KR'.$_POST['choice'] : "Pilih Kod: ";?></option>
